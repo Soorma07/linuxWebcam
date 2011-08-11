@@ -30,6 +30,46 @@
 
 #define CLEAR(x) memset (&(x), 0, sizeof (x))
 
+typedef struct {
+    int r;
+    int g;
+    int b;
+    int a;
+}BITMAP4;
+
+BITMAP4 YUV_to_Bitmap(int Y,int U,int V)
+{
+   int r,g,b;
+   int y,u,v;
+  // printf("%d %d %d\n", Y,U,V);
+   BITMAP4 bm = {0,0,0,0};
+
+   // u and v are +-0.5
+   y = Y;
+   u = U;
+   v = V;
+
+
+  r = y + 1.4075 * (v - 128);
+  g = y - 0.3455 * (u - 128) - (0.7169 * (v - 128));
+  b = y + 1.7790 * (u - 128);
+
+   if (r < 0) r = 0;
+   if (g < 0) g = 0;
+   if (b < 0) b = 0;
+   if (r > 255) r = 255;
+   if (g > 255) g = 255;
+   if (b > 255) b = 255;
+
+
+   bm.r = r;
+   bm.g = g;
+   bm.b = b;
+   bm.a = 0;
+
+   return(bm);
+}
+
 typedef enum
 {
     IO_METHOD_READ,
@@ -73,14 +113,15 @@ xioctl                          (int                    fd,
 static void
 process_image                   (const void *           p)
 {
-    unsigned char Y0,Y1,U,V;
-    unsigned char * pix = (unsigned char*)p;
-    unsigned char R,G,B;
+     unsigned char Y0,Y1,U,V;
+     unsigned char * pix = (unsigned char*)p;
+     unsigned char R,G,B;
 
     bitmapImage b(640,480);
 
     int x=0;
     int y=0;
+    int pixCount=0;
     for(int i=0; i<640*480*2; i+=4)
     {
         // every 4 bytes will represent 2 pixels.
@@ -90,20 +131,16 @@ process_image                   (const void *           p)
         Y1 = pix[i+2];
         V  = pix[i+3];
 
-        // Pixel 1
-        B = 1.164*(Y0 - 16)                   + 2.018*(U - 128);
-        G = 1.164*(Y0 - 16) - 0.813*(V - 128) - 0.391*(U - 128);
-        R = 1.164*(Y0 - 16) + 1.596*(V - 128);
+      //  printf("%d,%d,%d     %d,%d,%d\n", Y0,U,V,Y1,U,V);
+        BITMAP4 p1 = YUV_to_Bitmap(Y0,U,V);
+        x = pixCount%640;
+        y = pixCount/640;
+        b.setPixelRGB(x,y,p1.r,p1.g,p1.b);
 
-        x++;
-        y = x/(640);
-        b.setPixelRGB(x,y,R,G,B);
-        // pixel 2
-        B = 1.164*(Y1 - 16)                   + 2.018*(U - 128);
-        G = 1.164*(Y1 - 16) - 0.813*(V - 128) - 0.391*(U - 128);
-        R = 1.164*(Y1 - 16) + 1.596*(V - 128);
-        x++;
-        b.setPixelRGB(x,y,R,G,B);
+        p1 = YUV_to_Bitmap(Y1,U,V);
+        b.setPixelRGB(x+1,y,p1.r,p1.g,p1.b);
+
+        pixCount+=2;
     }
     b.saveToBitmapFile("test.bmp");
 
@@ -222,7 +259,7 @@ mainloop                        (void)
 {
     unsigned int count;
 
-    count = 100;
+    count = 25;
 
     while (count-- > 0)
     {
