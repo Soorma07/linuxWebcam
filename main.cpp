@@ -1,4 +1,4 @@
-//gavin
+//gavin 2
 /*
  *  V4L2 video capture example
  *

@@ -7,7 +7,7 @@
 using namespace std;
 
 class bitmapImage;
-// gavin
+// gavin 3
 /**
 A class for working with the Windows Bitmap File Format.
 This supports bit depths of 16, 24, and 32 with uncompressed pixel data.
