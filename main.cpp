@@ -491,7 +491,7 @@ init_device                     (void)
 	}
 
 
-        /* Select video input, video standard and tune here. */
+        /* Select video input, video standard and tune here. asdfasdf*/
 
 
 	CLEAR (cropcap);
