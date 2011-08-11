@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1312510350 source:/media/Backups/Programming Stuff/Projects/testWebcam/testWebcam/main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<getopt.h>
+	<fcntl.h>
+	<unistd.h>
+	<errno.h>
+	<malloc.h>
+	<sys/stat.h>
+	<sys/types.h>
+	<sys/time.h>
+	<sys/mman.h>
+	<sys/ioctl.h>
+	<asm/types.h>
+	<linux/videodev2.h>
+	"bitmapImage.h"
+
+1312507528 /media/Backups/Programming Stuff/Projects/testWebcam/testWebcam/bitmapImage.h
+	<iostream>
+	<fstream>
+
