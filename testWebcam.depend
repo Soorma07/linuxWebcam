@@ -22,3 +22,26 @@
 	<iostream>
 	<fstream>
 
+1313081363 source:/media/Backups/Programming Stuff/Projects/testWebcam/main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<getopt.h>
+	<fcntl.h>
+	<unistd.h>
+	<errno.h>
+	<malloc.h>
+	<sys/stat.h>
+	<sys/types.h>
+	<sys/time.h>
+	<sys/mman.h>
+	<sys/ioctl.h>
+	<asm/types.h>
+	<linux/videodev2.h>
+	"bitmapImage.h"
+
+1313035585 /media/Backups/Programming Stuff/Projects/testWebcam/bitmapImage.h
+	<iostream>
+	<fstream>
+
