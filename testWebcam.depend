@@ -22,8 +22,9 @@
 	<iostream>
 	<fstream>
 
-1313106018 source:/media/Backups/Programming Stuff/Projects/testWebcam/main.cpp
+1313350830 source:/media/Backups/Programming Stuff/Projects/testWebcam/main.cpp
 	<stdio.h>
+	<stdint.h>
 	<stdlib.h>
 	<string.h>
 	<assert.h>
@@ -41,7 +42,28 @@
 	<linux/videodev2.h>
 	"bitmapImage.h"
 
-1313035585 /media/Backups/Programming Stuff/Projects/testWebcam/bitmapImage.h
+1313350253 /media/Backups/Programming Stuff/Projects/testWebcam/bitmapImage.h
 	<iostream>
 	<fstream>
+
+1313278812 source:/media/Backups/Programming Stuff/Projects/testWebcam/linuxwebcam.cpp
+	"linuxwebcam.h"
+
+1313278829 /media/Backups/Programming Stuff/Projects/testWebcam/linuxwebcam.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<getopt.h>
+	<fcntl.h>
+	<unistd.h>
+	<errno.h>
+	<malloc.h>
+	<sys/stat.h>
+	<sys/types.h>
+	<sys/time.h>
+	<sys/mman.h>
+	<sys/ioctl.h>
+	<asm/types.h>
+	<linux/videodev2.h>
 
