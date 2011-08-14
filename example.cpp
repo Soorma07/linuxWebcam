@@ -1,7 +1,17 @@
 /*
- *  V4L2 video capture example
+ *  Linux Webcamera Class
  *
- *  This program can be used and distributed without restrictions.
+ *  Author:         Gavin Lobo
+ *  Website:        www.rabidgeek.net
+ *  Github:         https://github.com/rabidgeek
+ *
+ *  Description:    An example of how to use the linuxWebcam class.  This program opens the webcamera stream
+ *                  and prints the data to a bitmap file.
+ *
+ *                  Should compile fairly easily using:
+ *
+ *                          g++ example.cpp -o example
+ *
  */
 
 #include <stdio.h>
@@ -49,28 +59,27 @@ class myLinuxWebcam : public linuxWebcam
 
 };
 
-int
-main                            (int                    argc,
-                                 char **                argv)
+int main (int argc, char** argv)
 {
 
     myLinuxWebcam wc;
-    char dev_name[] = "/dev/video0";
+    char dev_name[] = "/dev/video0";    // Change this if you have another video device.
 
     wc.open_device (dev_name);          // Open the video device
-    wc.initDevice (320,200);          // initialize it to the size of the image you want
-
+    wc.initDevice (640, 480);           // initialize it to the size of the image you want
+                                        // if your webcamera cannot handle that resolution, it *should* change it to a resolution it can handle
+    printf("Camera initialized: %d x %d", wc.getWidth(), wc.getHeight() );
     wc.start_capturing ();              // start capturing data
 
         for(int i=0;i<25;i++)           // capture 25 frames
-            wc.captureFrameRGB();          // Capture a frame from the stream.  This method will invoke the procesImage( ) handler.  It can be overridden.
+            wc.captureFrameRGB();       // Capture a frame from the stream.  This method will invoke the procesImage( ) handler.  It can be overridden.
 
     wc.stop_capturing ();               // stop capturing data
 
-    wc.uninitDevice ();                // uninitialize the device
+    wc.uninitDevice ();                 // uninitialize the device
     wc.close_device ();                 // close the stream
 
     exit (EXIT_SUCCESS);
 
     return 0;
-}
+};

@@ -1,10 +1,29 @@
 #ifndef _LINUXWEBCAM_H_
 #define _LINUXWEBCAM_H_
 
+
+
 /*
- *  V4L2 video capture example
+ *  Linux Webcamera Class
  *
- *  This program can be used and distributed without restrictions.
+ *  Author:         Gavin Lobo
+ *  Website:        www.rabidgeek.net
+ *  Github:         https://github.com/rabidgeek
+ *
+ *  Description:    This class file was created in hope that it would be easier to capture webcamera data in linux.
+ *                  It is heavily based on the capture.c example provided by video4linux.  The capture.c code was
+ *                  encapsulated into a C++ class file.
+ *
+ *                  To use this, simply inherit from the linuxWebcam class and override the processImage(imageData * img)
+ *                  method.  See example.cpp
+ *
+ *                  I have only tested this on my plug-n-play Creative Live! Cam Chat HD Hi-Speed USB.
+ *                  Testing on other cameras would be nice.
+ *
+ *
+ *                  Things I might want to add:  ARGB converstion
+ *
+ *
  */
 
 #include <stdio.h>
@@ -163,6 +182,8 @@ public:
         n_buffers               = 0;
     }
 
+    int getWidth(){ return imageWidth;}
+    int getHeight(){ return imageHeight;}
 
     void setImageFormat(IMAGEFORMAT format)
     {
@@ -844,7 +865,7 @@ public:
         imageWidth = fmt.fmt.pix.width;
         imageHeight = fmt.fmt.pix.height;
 
-        printf("Device Initialized: %d %d\n", fmt.fmt.pix.width, fmt.fmt.pix.height);
+        //printf("Device Initialized: %d %d\n", fmt.fmt.pix.width, fmt.fmt.pix.height);
 
         switch (io)
         {
