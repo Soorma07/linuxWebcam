@@ -24,7 +24,8 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="bitmapImage.h" />
-		<Unit filename="main.cpp" />
+		<Unit filename="example.cpp" />
+		<Unit filename="linuxwebcam.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
